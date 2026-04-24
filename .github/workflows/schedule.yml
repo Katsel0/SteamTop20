@@ -1,0 +1,27 @@
+name: Steam Top Games Email
+
+on:
+  schedule:
+    - cron: '0 19 * * *'  # runs daily at 9am UTC
+  workflow_dispatch:       # lets you trigger it manually too
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          my_email: ${{ secrets.MY_EMAIL }}
+          destination_email: ${{ secrets.DESTINATION_EMAIL }}
+          password: ${{ secrets.PASSWORD }}
+        run: python main.py
