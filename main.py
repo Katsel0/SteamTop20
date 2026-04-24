@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-to_addr=os.getenv("destination_email")
-from_addr=os.getenv("my_email")
-app_password = os.getenv("password")
+to_addr=os.getenv("DESTINATION_EMAIL")
+from_addr=os.getenv("MY_EMAIL")
+app_password = os.getenv("PASSWORD")
 
 print(f"from: {from_addr}, pass length: {len(app_password) if app_password else 'NONE'}")
 
